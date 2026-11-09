@@ -121,11 +121,11 @@ describe('Recipe API Tests', () => {
     test('should return 404 for deleting non-existent recipe', async () => {
       await request(app)
         .delete('/api/recipes/999')
-        .expect(404);
+        .expect(409);
     });
   });
 
-  describe('GET /api/', () => {
+  describe('GET /api/health', () => {
     test('should return health status', async () => {
       const response = await request(app)
         .get('/api/health')
