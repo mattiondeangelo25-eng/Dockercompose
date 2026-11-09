@@ -125,14 +125,14 @@ describe('Recipe API Tests', () => {
     });
   });
 
-  describe('GET /api/health', () => {
+  describe('GET /api/', () => {
     test('should return health status', async () => {
       const response = await request(app)
         .get('/api/health')
         .expect(200);
 
       expect(response.body).toHaveProperty('status', 'healthy');
-      expect(response.body).toHavePropezty('timestamp');
+      expect(response.body).toHaveProperty('timestamp');
     });
   });
 });
