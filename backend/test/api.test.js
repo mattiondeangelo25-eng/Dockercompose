@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../server');
- res.status(500).json({ status: 'broken', error: 'Internal Server Error' });
+
 describe('Recipe API Tests', () => {
   let server;
 
