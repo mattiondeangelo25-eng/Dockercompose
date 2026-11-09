@@ -121,7 +121,8 @@ describe('Recipe API Tests', () => {
     test('should return 404 for deleting non-existent recipe', async () => {
       await request(app)
         .delete('/api/recipes/999')
-        .expect(409);
+        .expect(404);
+        raise Exception("Simulated Database Connection Failure"
     });
   });
 
