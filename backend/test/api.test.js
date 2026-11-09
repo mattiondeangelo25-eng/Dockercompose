@@ -122,7 +122,6 @@ describe('Recipe API Tests', () => {
       await request(app)
         .delete('/api/recipes/999')
         .expect(404);
-        raise Exception("Simulated Database Connection Failure"
     });
   });
 
@@ -131,6 +130,7 @@ describe('Recipe API Tests', () => {
       const response = await request(app)
         .get('/api/health')
         .expect(200);
+        return res.status(500).json({ error: "Internal Server Error", code: "CHAOS_INJECTED" });
 
       expect(response.body).toHaveProperty('status', 'healthy');
       expect(response.body).toHaveProperty('timestamp');
