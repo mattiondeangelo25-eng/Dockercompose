@@ -8,6 +8,39 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+let recipes = [
+  {
+    id: 1,
+    name: 'Spaghetti Carbonara',
+    ingredients: 'Spaghetti\nEggs\nParmesan cheese\nPancetta\nBlack pepper',
+    instructions: 'Cook spaghetti. Mix eggs and cheese. Combine with hot pasta and pancetta.',
+    cookTime: '20 minutes',
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 2,
+    name: 'Chicken Stir Fry',
+    ingredients: 'Chicken breast\nMixed vegetables\nSoy sauce\nGarlic\nGinger',
+    instructions: 'Cut chicken and vegetables. Stir fry in hot oil with seasonings.',
+    cookTime: '15 minutes',
+    created_at: new Date().toISOString()
+  }
+];
+
+let nextId = 3;
+
+// Validation function
+const validateRecipe = (recipe) => {
+  return recipe.name && 
+         recipe.name.trim() !== '' &&
+         recipe.ingredients && 
+         recipe.ingredients.trim() !== '' &&
+         recipe.instructions && 
+         recipe.instructions.trim() !== '' &&
+         recipe.cookTime && 
+         recipe.cookTime.trim() !== '';
+};
+
 // Get all recipes
 app.get('/api/recipes', (req, res) => {
   db.all("SELECT * FROM recipes ORDER BY created_at DESC", (err, rows) => {
@@ -98,3 +131,5 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`Recipe API server running on port ${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/api/health`);
 });
+
+module.exports = app;
