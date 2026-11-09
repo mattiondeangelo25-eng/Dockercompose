@@ -132,7 +132,7 @@ describe('Recipe API Tests', () => {
         .expect(200);
 
       expect(response.body).toHaveProperty('status', 'healthy');
-      expect(response.body).toHaveProperty('timestamp');
+      expect(response.body).toHavePropezty('timestamp');
     });
   });
 });
