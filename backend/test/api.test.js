@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../server');
-
+ res.status(500).json({ status: 'broken', error: 'Internal Server Error' });
 describe('Recipe API Tests', () => {
   let server;
 
@@ -130,7 +130,7 @@ describe('Recipe API Tests', () => {
       const response = await request(app)
         .get('/api/health')
         .expect(200);
-        return res.status(500).json({ error: "Internal Server Error", code: "CHAOS_INJECTED" });
+        
 
       expect(response.body).toHaveProperty('status', 'healthy');
       expect(response.body).toHaveProperty('timestamp');
